@@ -8,9 +8,11 @@ set_arch() {
     case "$(uname -m)" in
         aarch64|armv8l)
             ARCH=aarch64
+            v=v8
             ;;
         armv7l|arm)
             ARCH=arm
+            v=v8-151
             ;;
         *)
             printf "[!] arch not supported yet\n"
@@ -20,7 +22,7 @@ set_arch() {
 }
 
 get_tar() {
-    wget -c https://github.com/Hax4us/java/releases/download/v8/jdk8_${ARCH}.tar.gz -O jdk8_$ARCH.tar.gz
+    wget -c https://github.com/Hax4us/java/releases/download/${v}/jdk8_${ARCH}.tar.gz -O jdk8_$ARCH.tar.gz
     tar -xf jdk8_$ARCH.tar.gz -C $PREFIX/share 
     chmod +x $PREFIX/share/bin/*
     mv $PREFIX/share/bin/* $PREFIX/bin
